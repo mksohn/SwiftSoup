@@ -33,7 +33,7 @@ open class Cleaner {
     /// - Returns: A cleaned document.
 	public func clean(_ dirtyDocument: Document) throws -> Document {
 		let clean = Document.createShell(dirtyDocument.getBaseUri())
-        if let headWhitelist, let dirtHead = dirtyDocument.head(), let cleanHead = clean.head() { // frameset documents won't have a head. the clean doc will have empty head.
+        if let headWhitelist = headWhitelist, let dirtHead = dirtyDocument.head(), let cleanHead = clean.head() { // frameset documents won't have a head. the clean doc will have empty head.
             try copySafeNodes(dirtHead, cleanHead, whitelist: headWhitelist)
         }
         if let dirtBody = dirtyDocument.body(), let cleanBody = clean.body() { // frameset documents won't have a body. the clean doc will have empty body.
